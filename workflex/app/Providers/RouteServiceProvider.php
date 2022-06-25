@@ -19,6 +19,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
+    protected $namespace = 'App\Http\Controllers';
+
+    protected string $apiNamespace = 'App\Http\Api\Controllers';
+
+    protected string $workerAdminNamespace = 'App\Http\Api\Admin\Controllers';
+
+    protected string $companyAdminNamespace = 'App\Http\Api\Admin\Controllers';
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
@@ -29,12 +37,10 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
-
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
+            $this->mapApiRoutes();
+            $this->mapWorkerAdminRoutes();
+            $this->mapCompanyAdminRoutes();
+            $this->mapWebRoutes();
         });
     }
 
@@ -48,5 +54,36 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
+    }
+
+    public function mapApiRoutes()
+    {
+        Route::prefix('api')
+            ->middleware('api')
+            ->namespace($this->apiNamespace)
+            ->group(base_path('routes/api.php'));
+    }
+
+    public function mapWorkerAdminRoutes()
+    {
+        Route::prefix('api/worker/admin')
+            ->middleware('api')
+            ->namespace($this->workerAdminNamespace)
+            ->group(base_path('routes/admin.worker.api.php'));
+    }
+
+    public function mapCompanyAdminRoutes()
+    {
+        Route::prefix('api/company/admin')
+            ->middleware('api')
+            ->namespace($this->companyAdminNamespace)
+            ->group(base_path('routes/admin.company.api.php'));
+    }
+
+    public function mapWebRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 }

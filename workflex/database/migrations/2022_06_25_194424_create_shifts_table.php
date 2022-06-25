@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('shifts', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->bigInteger('userable_id');
-            $table->string('userable_type');
-            $table->string('password');
-            $table->rememberToken();
+            $table->foreignId('gig_id')->constrained('gigs');
+            $table->timestamp('start_at');
+            $table->timestamp('end_at');
+            $table->double('amount');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('shifts');
     }
 };

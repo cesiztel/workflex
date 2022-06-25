@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Shared\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,10 +17,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'name',
         'email',
         'password',
-        'profile_id',
-        'profile_type'
+        'userable_id',
+        'userable_type'
     ];
 
     /**
@@ -42,20 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = ['profile'];
-
-    public function profile()
+    public function userable()
     {
         return $this->morphTo();
-    }
-
-    public function getHasWorkerAttribute()
-    {
-        return $this->profile_type == 'Domain\Shared\Models\Worker';
-    }
-
-    public function getHasCompanyAttribute()
-    {
-        return $this->profile_type == 'Domain\Shared\Models\Company';
     }
 }

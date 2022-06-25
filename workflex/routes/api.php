@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Api\Controllers\ApplicationController;
+use App\Http\Api\Controllers\CompanyController;
+use App\Http\Api\Controllers\GigCategoryController;
+use App\Http\Api\Controllers\GigController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/test', function() {
-    $worker = new \Domain\Shared\Models\Worker;
-    $worker->first_name = "Cesar";
-    $worker->last_name = "Izquierdo";
-   return $worker;
-});
+// Endpoints for the main website without authentication
+Route::get('/categories', [GigCategoryController::class, 'index']);
+Route::resource('/gigs', GigController::class)
+    ->only('index', 'show');
+Route::get('/companies', [CompanyController::class, 'index']);
+Route::post('/gigs/{id}/apply', [ApplicationController::class, 'store']);
