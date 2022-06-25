@@ -1,9 +1,9 @@
 ## About WorkFlex
 
-Workflex is a test project inspired on the successful company Temper. This project uses the
-latest version of Laravel and tries to evolve a project from common Laravel structure to DDD methodology.
+Workflex is a test project inspired on the successful company Temper. This project uses the 
+latest version of Laravel and applies DDD methodology. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects. 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 DDD (Domain Driven Design) is software development approach that tries to bring
@@ -13,7 +13,6 @@ the business language and the code as close together possible.
 
 In this example application we are going to use the following database model.
 I omit the primary keys and relationship keys for simplicity:
-
 ```
 user
     email
@@ -80,7 +79,7 @@ ratings:
         - rateable_id: The ID of the worker or the company
         - rateable_type: worker, company
         - gig_id
-        - rate: from 1 to 5 number
+        - rate: from 1 to 5 number 
 ```
 
 ## Project structure
