@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Gig;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Nette\NotImplementedException;
 use Spatie\LaravelData\Data;
 
@@ -38,10 +37,6 @@ class GigRepository implements GigRepositoryInterface
 
     public function find($id)
     {
-        if (null == $gig = $this->model->find($id)) {
-            throw new ModelNotFoundException("Gig {$id} not found");
-        }
-
-        return $gig;
+        return $this->model->with(['user','shifts'])->findOrFail($id);
     }
 }

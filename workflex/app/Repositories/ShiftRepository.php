@@ -2,11 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Application;
-use App\Models\Gig;
 use App\Models\Shift;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Nette\InvalidStateException;
 use Nette\NotImplementedException;
 use Spatie\LaravelData\Data;
 
@@ -41,10 +37,6 @@ class ShiftRepository implements ShiftRepositoryInterface
 
     public function find($id)
     {
-        if (null == $shift = $this->model->find($id)) {
-            throw new ModelNotFoundException("Shift {$id} not found");
-        }
-
-        return $shift;
+        return $this->model->findOrFail($id);
     }
 }

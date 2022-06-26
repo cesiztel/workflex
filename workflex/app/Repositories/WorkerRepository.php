@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Worker;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Nette\NotImplementedException;
 use Spatie\LaravelData\Data;
 
@@ -38,10 +37,6 @@ class WorkerRepository implements WorkerRepositoryInterface
 
     public function find($id)
     {
-        if (null == $worker = $this->model->find($id)) {
-            throw new ModelNotFoundException("User {$id} not found");
-        }
-
-        return $worker;
+        return $this->model->with(['user'])->findOrFail($id);
     }
 }

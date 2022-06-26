@@ -22,9 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Endpoints for the main website without authentication
+// Endpoints for the main website
 Route::get('/categories', [GigCategoryController::class, 'index']);
 Route::resource('/gigs', GigController::class)
     ->only('index', 'show');
-Route::get('/companies', [CompanyController::class, 'index']);
+Route::resource('/companies', CompanyController::class)
+    ->only('index', 'show');
 Route::post('/gigs/{id}/apply', [ApplicationController::class, 'store']);

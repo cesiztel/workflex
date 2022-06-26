@@ -37,6 +37,6 @@ class CompanyRepository implements CompanyRepositoryInterface
 
     public function find($id)
     {
-        throw new NotImplementedException(self::class.':'.__FUNCTION__.' not implemented');
+        return $this->model->with(['user'])->findOrFail($id);
     }
 }

@@ -7,8 +7,20 @@ use App\Repositories\CompanyRepositoryInterface;
 
 class CompanyController extends Controller
 {
-    public function index(CompanyRepositoryInterface $repository)
+    private CompanyRepositoryInterface $repository;
+
+    public function __construct(CompanyRepositoryInterface $repository)
     {
-        return $repository->all();
+        $this->repository = $repository;
+    }
+
+    public function index()
+    {
+        return $this->repository->all();
+    }
+
+    public function show($id)
+    {
+        return $this->repository->find($id);
     }
 }
