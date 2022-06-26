@@ -9,6 +9,11 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 DDD (Domain Driven Design) is software development approach that tries to bring
 the business language and the code as close together possible.
 
+This project is divided on two projects:
+
+- Initial version: Folder [workflex](./workflex)
+- DDDfy version of the project: Folder [workflex-dddfy](./workflex-dddfy) [WIP]
+
 ## Data modeling
 
 In this example application we are going to use the following database model.
@@ -83,7 +88,7 @@ ratings:
         - rate: from 1 to 5 number
 ```
 
-## Initial Workflex API (No dddfy)
+## Initial Workflex API (No dddfy). Folder: [workflex](./workflex)
 
 ### Installation
 
