@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreignId('gig_id')->constrained('gigs');
             $table->foreignId('shift_id')->constrained('shifts');
             $table->enum('status', ['open', 'allocated', 'rejected'])->default('open');
-            $table->timestamp('allocated_at');
-            $table->timestamp('rejected_at');
+            $table->timestamp('allocated_at')->nullable();
+            $table->timestamp('rejected_at')->nullable();
             $table->timestamps();
         });
     }

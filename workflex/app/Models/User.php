@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->morphTo();
     }
+
+    public function gig()
+    {
+        return $this->hasMany(Gig::class);
+    }
 }

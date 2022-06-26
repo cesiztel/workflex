@@ -2,12 +2,12 @@
 
 namespace App\Http\Api\Controllers;
 
-use App\Models\GigCategory;
+use App\Repositories\GigCategoryRepositoryInterface;
 
 class GigCategoryController extends Controller
 {
-    public function index()
+    public function index(GigCategoryRepositoryInterface $repository)
     {
-        return GigCategory::with('gigSubCategory')->get();
+        return $repository->all();
     }
 }

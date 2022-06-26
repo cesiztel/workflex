@@ -2,12 +2,13 @@
 
 namespace App\Http\Api\Controllers;
 
-use App\Models\Company;
+use App\Models\Worker;
+use App\Repositories\CompanyRepositoryInterface;
 
 class CompanyController extends Controller
 {
-    public function index()
+    public function index(CompanyRepositoryInterface $repository)
     {
-        return Company::with('user')->get();
+        return $repository->all();
     }
 }
