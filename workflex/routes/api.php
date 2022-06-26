@@ -4,7 +4,6 @@ use App\Http\Api\Controllers\ApplicationController;
 use App\Http\Api\Controllers\CompanyController;
 use App\Http\Api\Controllers\GigCategoryController;
 use App\Http\Api\Controllers\GigController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/sanctum/token', [\App\Http\Api\Shared\UserController::class, 'store']);
 
 // Endpoints for the main website
 Route::get('/categories', [GigCategoryController::class, 'index']);
@@ -28,4 +25,5 @@ Route::resource('/gigs', GigController::class)
     ->only('index', 'show');
 Route::resource('/companies', CompanyController::class)
     ->only('index', 'show');
-Route::post('/gigs/{id}/apply', [ApplicationController::class, 'store']);
+Route::middleware('auth:sanctum')
+    ->post('/gigs/{id}/apply', [ApplicationController::class, 'store']);

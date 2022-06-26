@@ -2,7 +2,7 @@
 
 namespace App\Http\Api\Admin\Controllers;
 
-use App\Http\Api\Controllers\Controller;
+use App\Http\Api\Shared\Controller;
 
 class ApplicationController extends Controller
 {

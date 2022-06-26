@@ -2,6 +2,7 @@
 
 namespace App\Http\Api\Controllers;
 
+use App\Http\Api\Shared\Controller;
 use App\Repositories\GigRepositoryInterface;
 
 class GigController extends Controller

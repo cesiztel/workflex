@@ -3,8 +3,8 @@
 namespace App\Http\Api\Controllers;
 
 use App\Data\ApplicationData;
+use App\Http\Api\Shared\Controller;
 use App\Repositories\ApplicationRepositoryInterface;
-use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {

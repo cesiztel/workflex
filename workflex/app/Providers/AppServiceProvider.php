@@ -14,6 +14,8 @@ use App\Repositories\ShiftRepository;
 use App\Repositories\ShiftRepositoryInterface;
 use App\Repositories\WorkerRepository;
 use App\Repositories\WorkerRepositoryInterface;
+use App\Service\AuthService;
+use App\Service\AuthServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -48,6 +50,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             WorkerRepositoryInterface::class,
             WorkerRepository::class
+        );
+        $this->app->bind(
+            AuthServiceInterface::class,
+            AuthService::class
         );
     }
 

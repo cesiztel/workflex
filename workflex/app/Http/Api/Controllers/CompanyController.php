@@ -2,7 +2,7 @@
 
 namespace App\Http\Api\Controllers;
 
-use App\Models\Worker;
+use App\Http\Api\Shared\Controller;
 use App\Repositories\CompanyRepositoryInterface;
 
 class CompanyController extends Controller
